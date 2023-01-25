@@ -12,7 +12,7 @@ class SerraPage extends StatefulWidget {
 class _SerraPageState extends State<SerraPage> {
   Future<Dati> getDati() async {
     var data = await http.get(Uri.parse(
-        "https://progettomiotto.altervista.org/dati_sensori/get.php?type=app"));
+        "https://YOUR-DOMAIN-NAME/get.php?type=app"));
     var jsonData = json.decode(data.body);
 
     String time = jsonData["sensore"]["time"];
@@ -32,7 +32,7 @@ class _SerraPageState extends State<SerraPage> {
     return Dati(time, humidity, temperature, humidityTer, luminosity, led, rele, modality);
   }
   Future putDati(String type, int value) async{
-    var data = await http.get(Uri.parse("https://progettomiotto.altervista.org/dati_sensori/put.php?type=$type&value=$value"));
+    var data = await http.get(Uri.parse("https://YOUR-DOMAIN-NAME/put.php?type=$type&value=$value"));
     return data;
   }
   @override
@@ -240,145 +240,6 @@ class _SerraPageState extends State<SerraPage> {
       ],
     );
   }
-
-  /*getGraficaValori(dati) {
-    return Column(
-      children: [
-        Text("Dati sensori", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 3, 0, 5),
-          child: Container(
-              child: Card(
-                elevation: 5,
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.thermostat, size: 30),
-                          Text(
-                            " Temperatura",
-                            style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ],
-                      ),
-                      Row(children: [
-                        Text(
-                          dati.temperature.toString(),
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        Text(
-                          "°C",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ]),
-                    ],
-                  ),
-                ),
-              ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Container(
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.storm, size: 30),
-                      Text(
-                        " Umidità aria",
-                        style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  Row(children: [
-                    Text(
-                      dati.humidity.toString(),
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      "%",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ]),
-                ],
-              ),
-            ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Container(
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.terrain, size: 30),
-                      Text(
-                        " Umidità terra",
-                        style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  Row(children: [
-                    Text(
-                      dati.humidity_ter.toString(),
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      "%",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ]),
-                ],
-              ),
-            ),
-
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Container(
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.brightness_low, size: 30),
-                      Text(
-                        " Luminosità",
-                        style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  Row(children: [
-                    Text(
-                      "50.0",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      "%",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ]),
-                ],
-              ),
-            ),
-          ),
-        Text("ultimo aggiornamento: ${dati.time}",style: TextStyle(fontSize: 11)),
-      ],
-    );
-  }*/
 
   getGraficaSetting(dati) {
     int value2=3;
