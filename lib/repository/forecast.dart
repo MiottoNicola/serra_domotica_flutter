@@ -17,7 +17,7 @@ class Forecast{
 
 class ForecastRepository{
 
-  String apiKey = "478eff817c63c52301446cb3dbc57a50";
+  String apiKey = "YOUR-TOKEN";
 
   Future<Forecast> getForecastForZipCode(int zipCode) async{
     var data = await http.get(Uri.parse(
